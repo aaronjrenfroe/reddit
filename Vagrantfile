@@ -62,8 +62,10 @@ hostname = "reddit.local"
 
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "trusty-cloud-image"
-  config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+  # CENTOS_MOD
+  config.vm.box = "centos/7"
+  #config.vm.box = "trusty-cloud-image"
+  #config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
 
   # mount the host shared folder
   config.vm.synced_folder code_share_host_path, code_share_guest_path, mount_options: ["ro"]
