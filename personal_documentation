@@ -1,0 +1,27 @@
+in /etc/hosts add a new entry:
+  [ip] reddit.local
+
+navigate to reddit.local and you should see the reddit home 
+
+when attempting too register a new user you get an message saying "an error has occured"
+this is becasue theh https certs are bad
+navigate to https://reddit.local
+
+Add TSL/SSL exception attempt to create a new user again.
+
+You might get a "server 500 error" message. I have not tracked this one down yet but
+you should be able to login anyway with the username and password that you just made. 
+
+Once logged in you cannot create a subreddit for 30 days and the site has 0 admins, so lets change that. 
+ - navigate to ./reddit/src/reddit/r2/ and open example.ini
+ - there are lots of fun things in here but we need to focus
+ - find the that contains "reddit:admin", it's around 822
+ - add a comma and add your username you created when you registered a colon and 'admin'
+   - the line should look like this: 
+      employees = reddit:admin, <your username>:admin
+ - save the file
+ - now we need to write the config to ZooKeeper (What is ZooKeeper?)
+ - navigate to ./reddit/src/reddit/scripts and run: python write_live_config ./../r2/example.ini
+
+###### TODO #####
+- remove gold
